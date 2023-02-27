@@ -1,0 +1,468 @@
+
+<div class="container-fluid pt-4 px-4 content-all-barbers">
+   <div class="g-4">
+      <div class="col-sm-12 col-xl-12">
+         <div class="bg-secondary h_6  rounded p-4">
+            <div class="main-block">
+               <div class="btn-main">
+                  <div class="alert-kevin"></div>
+                  <div class="service">Послуги</div>
+                  <div class="service-parent">
+                     <div class="select-wind"></div>
+                  </div>
+                  <div class="master">Майстер</div>
+                  <div class="master-parent">
+                     <div class="master-wind"></div>
+                  </div>
+                  <div class="date">Дата і Час</div>
+                  <div class="date-parent">
+                     <div class="date-wind">
+                        <ul class="list-date-wind">
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="btn-finish-parent">
+                     <form method="POST" class="senks-button">
+                        <input type="hidden" id="input-servise" name="service" value="">
+                        <input type="hidden" id="input-id_master" name="id_master" value="">
+                        <input type="hidden" id="input-master" name="master" value="">
+                        <input type="hidden" id="input-date" name="date" value="">
+                        <input type="hidden" id="input-time" name="time" value="">
+                        <input type="hidden" id="input-all_time_service" name="all_time_service" value="">
+                        <input type="hidden" id="input-all_price" name="all_price" value="">
+                        <input type="hidden" id="input-email" name="email" value="mail@.com">
+                        <input type="hidden" id="input-phone" name="phone" value="">
+                        <input type="hidden" id="input-name" name="name" value="">
+                        <button type="submit" name="new_order" class="btn-submit">Підтвердити</button>
+                     </form>
+                  </div>
+
+               </div>
+
+               <div class="reserve-div-parent">
+                  <div class="rainbow-reserve-service rainbow">
+                     <div class="reserve-service"></div>
+                  </div>
+                  <div class="rainbow-reserve-master rainbow">
+                     <div class="reserve-master"></div>
+                  </div>
+                  <div class="rainbow-reserve-date-time rainbow">
+                     <div class="reserve-date-time">
+                        <div class="reserve-date text"></div>
+                        <div class="reserve-time"></div>
+                     </div>
+                  </div>
+                  <div class="finish-reserve-parent rainbow">
+                     <div class="name-user">
+                        <input oninput="checkNameInput()" type="text" id="name" placeholder="Ім'я замовника">
+                     </div>
+                     <div class="phone-user">
+                        <input oninput="checkPhoneInput()" type="phone" id="phone" placeholder="Телефон замовника">
+                     </div>
+                     <div class="mail-user">
+                        <input type="email" id="email" placeholder="Пошта замовника">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+   // let all_service_network = JSON.parse('<?php echo json_encode($service_php) ?>', 'UTF-8');
+   let arr_current_time_for_order = [];
+   let master_for_order;
+   let data_order_service = [];
+   let interval_time_near_order = 15;
+   // masters_data = JSON.parse('<?php echo json_encode($masters_list) ?>', 'UTF-8');
+
+
+
+   // all_service_network.forEach(element => {
+   //    $('.select-wind').append(`<p>${element}</p>`)
+   // });
+
+   function kevin() {
+      $('.select-wind').slideToggle();
+      clickService()
+      $('.alert-kevin').html(`Спочатку оберіть послугу`)
+      $('.alert-kevin').slideDown();
+   }
+   ///////////actual time
+   let hor = new Date().getHours();
+   let min = new Date().getMinutes();
+   if (hor < 10) hor = '0' + hor;
+   if (min < 10) min = '0' + hor;
+   let actual_time = `${hor}:${min}`;
+   ////////
+   function getEndOrdersTime(startTime, orderTimeLine) {
+      startTime = startTime.split(':');
+      let min = Number(startTime[1]);
+      let hov = Number(startTime[0]);
+      orderTimeLine = Number(orderTimeLine);
+      min += orderTimeLine;
+      hov += parseInt(min / 60);
+      min = min % 60;
+      if (hov == 24) {
+         hov = '00'
+      } else if (hov < 10) {
+         hov = '0' + hov;
+      }
+      if (min < 10) {
+         min = '0' + min;
+      }
+      return hov + ":" + min;
+   }
+
+   function btnNext() {
+      if ($('.reserve-service p,.reserve-master p,.reserve-date p,.reserve-time p').length == 0) {
+         $('.finish-reserve-parent').fadeOut();
+      } else {
+         $('.finish-reserve-parent').css('display', 'flex');
+      }
+   }
+
+
+   function editService(service) {
+      let temp_service;
+      let temp_p_t;
+      let all_data = [];
+      service.forEach(serv => {
+         temp_p_t = serv.substring(serv.indexOf('['), serv.length);
+         temp_p_t = temp_p_t.substr(1, temp_p_t.length - 2);
+         temp_p_t = temp_p_t.split(',')
+         temp_service = serv.substring(0, serv.indexOf('['));
+         all_data.push([temp_p_t, temp_service]);
+      });
+      return all_data
+   }
+
+   function beckHomeService() {
+      ////////////////////delete service home 
+      $('.service-close').click(function() {
+         $('.reserve-master p,.master-wind,.date-wind,.finish-reserve-parent,.btn-submit').fadeOut();
+         $('.reserve-date p,.reserve-time p,.reserve-master p').remove();
+         $(this).parent('.reserve-service-div').prependTo('.select-wind').removeAttr('class').children('span').remove();
+         $('.select-wind div').children('p').removeAttr('class');
+         $('.reserve-service p,.select-wind p').children('span').remove();
+      })
+   }
+
+   function deleteDublicate(class_name, teg_name) {
+      var original = [];
+      $(`.${class_name} ${teg_name}`).each(function() {
+         var thisText = $(this).text();
+         if (original[thisText]) {
+            $(this).remove();
+         } else {
+            original[thisText] = true;
+         }
+      });
+   }
+
+
+
+   function clickMaster() {
+      $('.master').click(function() {
+         $('.reserve-service p').children('span').remove();
+         $('.reserve-master p').remove();
+         $('.finish-reserve-parent').hide();
+         $('.master-wind p,.reserve-date p,.reserve-time p').remove();
+         if ($('.reserve-service p').length == 0) {
+            kevin()
+         } else {
+            let service = [];
+            let buff_input = '';
+            $('.reserve-service p').each(function() {
+               service.push($(this).text())
+               buff_input += '#' + $(this).text();
+            })
+            $('#input-servise').val(`${buff_input}`);
+            // masters_data.forEach(element => {
+            //    let flag = true;
+            //    let temp_service = [];
+            //    temp_service = Object.keys(element.service_data.service)
+            //    service.forEach(el => {
+
+            //       if (!temp_service.includes(el)) {
+            //          flag = false;
+            //       }
+            //    })
+
+            //    let arr = JSON.stringify(element.status);
+
+            //    if (flag == true) {
+            //       $('.master-wind').append(`
+            //             <p id='${element.id_master}' class="master-wind-child">
+            //                 <input id='${element.id_master}' type='hidden' name='master' value='${element.name}'/>
+            //                 <span class='status-width'>${element.name}</span> 
+            //                 <span class='status-width'> ${arr.replaceAll('"',' ').replaceAll('[',' ').replaceAll(']',' ')}</span>
+            //             </p>`);
+            //    }
+            // });
+            $('.alert-kevin').slideUp();
+            $('.master-wind').slideToggle()
+            $('.select-wind,.date-wind').slideUp();
+            if ($('.reserve-master').children().length == 0) {
+               $('.reserve-master').prepend('<li class="text up-case">Майстер</li>')
+            }
+            if ($('.status-width').text().length > 20) {
+               $('.status-width').parent().addClass('d')
+            }
+            clickChoiseMaster()
+            deleteDublicate('master-wind', 'p')
+         }
+      })
+   }
+   clickMaster()
+
+   function clickChoiseMaster() {
+      /////////// click select master
+      $('.master-wind-child').click(function() {
+         $('.finish-reserve-parent,.master-wind,.btn-submit').slideUp()
+         $('.reserve-master p,.reserve-date p,.reserve-time p').remove();
+         $(this).clone().appendTo('.reserve-master');
+         $('.reserve-master').children('p').addClass('text').removeClass('master-wind-child ');
+         // masters_data.forEach(val => {
+
+         //    if (val.id_master == this.id) {
+         //       data_order_service.id_master = val.id_master;
+         //       data_order_service.name = val.name;
+         //       data_order_service.work_day = val.work_day;
+         //       data_order_service.orders = val.orders;
+         //       data_order_service.order_serf = [];
+         //       data_order_service.all_price = 0;
+         //       data_order_service.all_time = 0;
+         //       $('.reserve-service p').each(function() {
+         //          $(this).children('span').remove()
+         //          let keys = Object.keys(val.service_data.service);
+         //          keys.forEach(arr_serf => {
+         //             if (arr_serf == $(this).text()) {
+         //                data_order_service.order_serf.push(`${$(this).text()} - ${val.service_data.service[arr_serf].price} грн. Тривалiсть: ${val.service_data.service[arr_serf].time} хв.`);
+         //                data_order_service.all_price += parseInt(val.service_data.service[arr_serf].price);
+         //                data_order_service.all_time += parseInt(val.service_data.service[arr_serf].time);
+         //                $(this).append(`<span class='price-time-service' style="margin-left: 20px;"> (${val.service_data.service[arr_serf].time} хв. ${val.service_data.service[arr_serf].price} грн.) </span>`);
+         //             }
+         //          });
+         //       });
+         //    }
+         // })
+         $('.rainbow-reserve-master').fadeIn();
+         $('#name,#phone,#email').val('');
+         $('#input-id_master').val(data_order_service.id_master);
+         $('#input-master').val(data_order_service.name);
+         $('#input-all_price').val(data_order_service.all_price);
+         $('#input-all_time_service').val(data_order_service.all_time);
+
+      })
+   }
+   function clickDateButton() {
+      /////////////////click main date
+      $('.date').click(function() {
+         $('.reserve-date p,.list-date-child').remove();
+
+         if ($('.reserve-service p').length == 0) {
+            kevin()
+         } else if ($('.reserve-service p').length > 0 && $('.reserve-master p').length == 0) {
+            $('.alert-kevin').html(`Оберіть майстра`);
+            $('.alert-kevin').slideDown();
+         } else {
+            $('.finish-reserve-parent,.btn-submit').fadeOut()
+            $('.reserve-date p,.reserve-time p').remove();
+            $('.list-date-wind').children().remove();
+
+            data_order_service.work_day.work_day.forEach(date => {
+               $('.list-date-wind').append(`<ul id='${date.day.replaceAll('/','.')}' class="list-date-head"><li class="li-ch-date">${date.day.replaceAll('/','.')}<i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus"></i></li></ul>`);
+            });
+
+            clickDate();
+
+            $('.date-wind').slideToggle()
+            $('.master-wind,.select-wind').slideUp()
+            if ($('.reserve-date').children().length == 0) {
+               $('.reserve-date').prepend('<li class="text up-case">Дата і час</li>')
+            }
+         }
+         $('#name,#phone,#email').val('');
+      })
+   }
+
+   function clickService() {
+      $('.select-wind p').click(function() {
+         if ($('.reserve-service').children().length == 0) {
+            $('.reserve-service').prepend('<li class="text up-case">Послуги</li>')
+         }
+         $('.reserve-date p,.reserve-time p,.reserve-master p').remove();
+         $('.alert-kevin').slideUp();
+         $(this).remove();
+         $('.reserve-service').append(`<div class='reserve-service-div'><i class='fa-solid fa-xmark service-close'></i><p class="text master-flex for-center">${$(this).text()}</p></div>`);
+         $('.rainbow-reserve-service').fadeIn()
+         $('.select-wind,.finish-reserve-parent,.btn-submit').slideUp();
+         $('#name,#phone,#email').val('');
+         deleteDublicate('reserve-service', 'div')
+         beckHomeService()
+      })
+   }
+
+   function clickDate() {
+      ////////////click date
+      $('.list-date-head').click(function() {
+         $('.list-date-child').remove();
+         $('.reserve-date p').remove();
+         // masters_data.forEach(elements => {
+         //    console.log(elements)
+
+         //    elements.work_day.work_day.forEach(e => {
+         //       let temp_time = e.time.split('-') /////start---finish work day
+         //       let temp_time_order = temp_time[0]; /////////first time to order
+         //       let true_orders_time = [];
+         //       let orders_time_arr = []; //////////all orders today
+         //       elements.actual_orders_user.actual_orders_user.forEach(ord => {
+         //          if (ord.date_order.replaceAll('/', '.') == this.id) {
+         //             orders_time_arr.push([ord.time_order, getEndOrdersTime(ord.time_order, ord.order_length)])
+         //          }
+         //       });
+         //       for (i = 0; i < orders_time_arr.length && getEndOrdersTime(temp_time_order, data_order_service.all_time) != temp_time[1];) {
+         //          let flag = false;
+         //          while (flag != true) {
+         //             if (temp_time_order == orders_time_arr[i][0]) {
+         //                temp_time_order = orders_time_arr[i][1];
+         //                flag = true;
+         //                i++;
+         //             } else if (getEndOrdersTime(temp_time_order, data_order_service.all_time) <= orders_time_arr[i][0]) {
+         //                true_orders_time.push({
+         //                   time: temp_time_order
+         //                })
+         //                temp_time_order = getEndOrdersTime(temp_time_order, interval_time_near_order);
+         //             } else {
+         //                temp_time_order = orders_time_arr[i][1];
+         //                flag = true;
+         //                i++;
+         //             }
+         //          }
+         //       }
+         //       if (getEndOrdersTime(temp_time_order, data_order_service.all_time) <= temp_time[1]) {
+         //          while (getEndOrdersTime(temp_time_order, data_order_service.all_time) <= temp_time[1]) {
+         //             true_orders_time.push({
+         //                time: temp_time_order
+         //             })
+         //             temp_time_order = getEndOrdersTime(temp_time_order, interval_time_near_order);
+         //          }
+         //       }
+         //       arr_current_time_for_order = [];
+         //       arr_current_time_for_order = true_orders_time;
+         //    });
+         // });
+         $('.list-date-head').append(`<ul class="list-date-child"></ul>`)
+         arr_current_time_for_order.forEach(time => {
+            $('.list-date-child').append(`<li id="${time.time}">${time.time}</li>`)
+         })
+         $('.reserve-date').append(`<p class="ac-date text">${this.id}</p>`);
+         $('#input-date').val(`${this.id.replaceAll('.','/')}`)
+         $(this).find('.list-date-child').slideDown();
+         if ($(this).find('.list-date-child').show()) {
+            $(this).click(function() {
+               $(this).find('.list-date-child').toggle()
+            })
+         }
+         $('.fa-minus', this).toggleClass('dis-block');
+         $('.fa-plus', this).toggleClass('dis-none');
+
+         $('.list-date-child li').click(function() {
+            $('.reserve-time p').remove()
+            $('.reserve-time').append(`<p class="text">${this.id}</p>`);
+            data_order_service.time = this.id;
+            $('#input-time').val(`${this.id}`)
+            $('.date-wind').slideUp()
+            btnNext()
+         })
+         data_order_service.date_order = $('.ac-date').text();
+         $('.rainbow-reserve-date-time').fadeIn();
+
+         $('.list-date-child li').each(function() {
+            if ($('#input-date').val() == now_day && $(this).text().replaceAll(':', '') < actual_time.replaceAll(':', '')) {
+               $(this).remove();
+            }
+         })
+      })
+   }
+
+   $(function() {
+      $('.service').click(function() {
+         // $('.reserve-service p').children('span').remove()
+         $('.select-wind').slideToggle();
+         $('.master-wind,.date-wind').slideUp();
+         $('.alert-kevin').slideUp();
+         if ($('.reserve-service').children().length == 0) {
+            $('.reserve-service').prepend('<li class="text up-case">Послуги</li>')
+         }
+         clickService()
+         deleteDublicate('select-wind', 'p')
+      });
+      clickDateButton()
+   })
+   ////////////////////phone mask
+   $(function() {
+      $("#phone").mask("+38 (999) 999-99-99");
+   });
+   //////////////
+   $(function() {
+      $('.btn-submit').click(function() {
+         if ($('#name').val().length == 0) {
+            $('#name').css('border', '1px solid red')
+         } else {
+            $('#name').css('border', '1px solid #45f3ff')
+         }
+         if ($('#phone').val().length == 0) {
+            $('#phone').css('border', '1px solid red')
+         } else {
+            $('#phone').css('border', '1px solid #45f3ff')
+         }
+         if ($('#name').val().length > 0 && $('#email').val().length > 0 && $('#phone').val().length > 0) {
+            $('.senks-wind').show();
+            $('.reserve-div-parent,.btn-main').hide();
+            data_order_service.order_serf.forEach(element => {
+               $('.service-final').append(`<p >${element.substring(0, element.indexOf('-'))}</p>`);
+            });
+            $('.time-datas').html(`${data_order_service.time}-${getEndOrdersTime(data_order_service.time,data_order_service.all_time)}`);
+            $('.price-datas').html(`${data_order_service.all_price} грн.`);
+            $('.master-datas').html(`${data_order_service.name}`);
+            $('.service-datas-date').html(`${data_order_service.date_order}`);
+         }
+         $('#input-name').val($('#name').val());
+         $("#input-email").val($('#email').val());
+         $("#input-phone").val($('#phone').val());
+      })
+   })
+   //////////////////проверка на заполненость input
+   function checkNameInput() {
+      if ($('#name').val().length > 0) {
+         $('#name').css('border', '1px solid #45f3ff')
+      } else {
+         $('#name').css('border', '1px solid red')
+      }
+
+      if ($('#name').val().length > 0 && $('#phone').val().length > 0) {
+         $('.btn-submit').fadeIn();
+      } else {
+         $('.btn-submit').fadeOut();
+      }
+
+   }
+
+
+   function checkPhoneInput() {
+      if ($('#phone').val().length >= 19) {
+         $('#phone').css('border', '1px solid #45f3ff')
+      } else {
+         $('#phone').css('border', '1px solid red')
+      }
+
+      if ($('#name').val().length > 0 && $('#phone').val().length >= 19) {
+         $('.btn-submit').fadeIn();
+      } else {
+         $('.btn-submit').fadeOut();
+      }
+   }
+</script>

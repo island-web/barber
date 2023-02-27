@@ -1,0 +1,193 @@
+<!-- Sales Chart Start -->
+<div class="list-order-for-master-parent">
+   <div class="d-flex justify-beetwen">
+      <h6>Перелік замовлень на <span class="list-order-for-master-data"></span> для <span
+            class="list-order-for-master-name"></span></h6>
+      <i class="fa-solid fa-xmark list-order-for-master-close"></i>
+   </div>
+   <ul class=" border-li reserve_barbers_work_today ">
+      <li>Час</li>
+      <li>Послуга</li>
+      <li class="adaptive-li-normal">Замовник</li>
+      <li class="adaptive-li-normal border-li">Контакт</li>
+      <li class="adaptive-li-normal">Редагувати</li>
+      <li class="adaptive-home-admin-li">Деталі</li>
+   </ul>
+   <div class="reserve_today-for-master ">
+   </div>
+</div>
+
+<div class="container-fluid pt-4 px-4 home-admin-main">
+   <div class="row g-4">
+      <div class="col-sm-12 col-xl-12">
+         <div class="today-master bg-secondary h_6 text-center rounded p-4">
+            <h6>Перелік майстрів працюючих <span class="today-master-date"></span></h6>
+            <ul class="border-li all_barbers_work_today">
+               <li>Майстер</li>
+               <li>Графік</li>
+               <li class="adaptive-li-normal">Дивитись замовлення</li>
+               <li class="adaptive-li-normal">Додати замовлення</li>
+
+               <li class="adaptive-li-normal">Закрити зміну</li>
+
+               <li class="adaptive-home-admin-li">Редагувати</li>
+            </ul>
+
+            <div class="data_barber_work_today"></div>
+
+            <div id="target"></div>
+         </div>
+         <div class="home-admin-wind-for-big-img">
+            <img class="home-admin-wind-for-big-img-child" src="">
+         </div>      
+      </div>
+
+      <div class="col-sm-12 col-xl-12">
+         <div class="bg-secondary h_6  rounded p-4">
+            <h6>Перелік замовлень на <span class="today-master-date"></span></h6>
+
+
+            <ul class=" border-li reserve_barbers_work_today">
+               <li>Час</li>
+               <li>Послуга</li>
+               <li>Майстер</li>
+               <li class="adaptive-li-normal">Замовник</li>
+               <li class="adaptive-li-normal border-li">Контакт</li>
+               <li class="adaptive-li-normal">Редагувати</li>
+               <li class="adaptive-home-admin-li">Деталі</li>
+            </ul>
+            <div class="reserve_today ">
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+   <!-- edit order -->
+   <div class="home-admin-edit-wind h_6 text-center p-4">
+
+      <input id='start_time_day' type="hidden" value=""></input>
+      <input id='end_time_day' type="hidden" value=""></input>
+
+      <h6 class="home-admin-edit-h6">Редагування замовлення майстра: <span class="home-admin-edit-wind-closed"><i
+               class="fa-solid fa-xmark"></i></span></h6>
+      <div class="home-admin-edit-info"><span class="home-admin-edit-info-name"></span><span
+            class="home-admin-edit-info-order"></span><span class="home-admin-edit-info-date"></span><span>на
+            <span class="home-admin-edit-info-time"></span></span></div>
+      <div class="edit-wind-child">
+         <div class="edit-wind-child-div">
+            <div>
+               <p class="position bg-secondary">
+                  <span class="edit-wind-child-master">Змінити майстра </span>
+                  <span class="edit-wind-child-master-span"><i class="fa-solid fa-xmark"></i></span>
+               </p>
+
+            </div>
+            <p class="edit-wind-child-master-change bg-secondary"></p>
+         </div>
+         <div class="edit-wind-child-div">
+            <p class="position bg-secondary">
+               <span class="edit-wind-child-day">Змінити день замовлення </span>
+               <span class="edit-wind-child-day-span"><i class="fa-solid fa-xmark"></i></span>
+            </p>
+            <p class="edit-wind-child-day-change bg-secondary"></p>
+         </div>
+         <div class="edit-wind-child-div">
+            <p class="position bg-secondary">
+               <span class="edit-wind-child-time">Змінити час замовлення
+                  <input class="for-id-order-input" type="hidden" value="">
+                  <input class="for-length-order-input" type="hidden" value="">
+
+               </span>
+               <span class="edit-wind-child-time-span"><i class="fa-solid fa-xmark"></i></span>
+            </p>
+            <p class="edit-wind-child-time-change bg-secondary"></p>
+         </div>
+         <form method="POST">
+            <button value="ok" type="submit" name="btn_delete_order" class="edit-wind-child-closed-order">Видалити
+               замовлення</button>
+            <input id='reserve_barbers_edit_id_order' type="hidden" name="reserve_barbers_old_id_order"
+               value=""></input>
+            <input id='reserve_barbers_old_id_master' type="hidden" name="reserve_barbers_old_id_master"
+               value=""></input>
+         </form>
+      </div>
+      <form method="POST">
+         <button value="ok" name="home-admin-edit-btn" class="btn btn-outline-primary w-100 home-admin-edit-btn"
+            type="submit">Записати</button>
+         <input id='reserve_barbers_edit_id_order' type="hidden" name="reserve_barbers_old_id_order" value=""></input>
+         <input id='reserve_barbers_old_id_master' type="hidden" name="reserve_barbers_old_id_master" value=""></input>
+         <input id='reserve_barbers_edit_id_master' type="hidden" name="reserve_barbers_new_id_master" value=""></input>
+         <input id='reserve_barbers_edit_new_time' type="hidden" name="reserve_barbers_edit_new_time" value=""></input>
+         <input id='reserve_barbers_edit_new_date' type="hidden" name="reserve_barbers_edit_new_date" value=""></input>
+         <input id='order_for_change' type="hidden" name="order_for_change" value=""></input>
+         <input type="hidden" id="input_length_service" name="input_length_service" value="">
+         <input type="hidden" id="input_email" name="input_email" value="mail@ua.com">
+         <input type="hidden" id="input_phone" name="input_phone" value="">
+         <input type="hidden" id="input_client_name" name="input_client_name" value="">
+      </form>
+   </div>
+
+   <!-- edit order end -->
+
+
+
+
+   <!-- Widgets Start -->
+   <div class="container-fluid pt-4 px-4">
+      <div class="row g-4 calendar-todolist">
+         <div class="col-sm-12 col-md-6 col-xl-6">
+            <div class="h-100 bg-secondary rounded p-4">
+               <div class="d-flex align-items-center justify-content-between mb-4">
+                  <h6 class="mb-0">Календар</h6>
+               </div>
+               <div class="look-calendar admin-calendar">
+                  <table id="calendar">
+                     <thead>
+                        <tr>
+                           <td class="next-a"><b>‹</b>
+                           <td colspan="5">
+                           <td class="next-a"><b>›</b>
+                        <tr class="dn">
+                           <td>Пн
+                           <td>Вт
+                           <td>Ср
+                           <td>Чт
+                           <td>Пт
+                           <td>Сб
+                           <td>Нд
+                     </thead>
+                     <tbody></tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <!-- to do list -->
+         <div class="col-sm-12 col-md-6 col-xl-6">
+            <div class="h-100 bg-secondary rounded p-4">
+               <div class="d-flex align-items-center justify-content-between mb-4">
+                  <h6 class="mb-0">Лист завдань</h6>
+               </div>
+               <div class="d-flex mb-2">
+                  <input class="form-control bg-dark border-0 task-input" type="text" placeholder="Нове завдання">
+                  <button type="button" onclick=taskBtn() class="btn btn-primary ms-2 task-button-head">Додати</button>
+               </div>
+               <div class="d-flex align-items-left border-bottom py-2 task-parent">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="opinies-list">
+         <div class="h-100 bg-secondary rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+               <h6 class="mb-0">Відгуки</h6>
+            </div>
+            <div class="d-flex align-items-center border-bottom py-3">
+               <div class="w-100 ms-3 all_head-coments">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Widgets End -->
+<script src="./js/home_admin.js"></script>

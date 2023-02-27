@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="./style/form_login.css" rel="stylesheet">
+    <title></title>
+</head>
+
+<body>
+
+
+    <div class="error">
+        <div class="box">
+            <form>
+                <h2 id="modal-error-message"></h2>
+                <input type="button" id="modal-error-close" name="modal-error-close" value="Закрити">
+            </form>
+        </div>
+    </div>
+    <script src="./renderer.js"></script>
+</body>
+
+</html>
+
+<!-- <script>
+    logo_network = JSON.parse('<?php echo json_encode($_SESSION['network_data']['logo_network']) ?>', 'UTF-8');
+    $("#img_logo_login").attr("src", logo_network);
+    console.log($("#img_logo_login"))
+
+</script> -->

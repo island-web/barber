@@ -1,0 +1,796 @@
+
+
+<div class="container-fluid pt-4 px-4 home-admin-main">
+    <div class="content-all-barbers">
+        <div class="col-sm-12 col-xl-12 setting-shop-main">
+            <div class="today-master-service bg-secondary h_6 text-center rounded">
+                <h6>Запис і редагування категорій та послуг</h6>
+                <i class="fa-solid fa-chevron-down setting-arrow-down"></i>
+            </div>
+            <div class="container-fluid px-4 padding-zero setting-add-delete-service">
+                <div class="setting-box-flex">
+                    <div class=" col-xl-6 setting-children">
+                        <div class="bg-secondary rounded align-items-center p-4 ">
+                            <h6>Додати категорію</h6>
+                            <form method="POST">
+                                <div class="add-category-input-main">
+                                    <input onclick="checkCategoryInput()" type="text" name="add-category-input-1" class="rounded add-category-input" placeholder="Впишіть категорію">
+                                </div>
+                                <button value="ok" name="add-category-btn" class="btn btn-outline-primary w-100 btn-add-category" type="submit">Додати категорію</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class=" col-xl-6 setting-children">
+                        <div class="bg-secondary rounded align-items-center p-4">
+                            <h6>Додати послуги</h6>
+                            <form method="POST">
+                                <p class="form-select-setting-shop form-select">Виберіть категорію</p>
+                                <div class="setting-service-select"></div>
+                                <div class="form-select-setting-select-parent">
+                                    <input type='hidden' name="form-setting-select-input" id="form-setting-select-input" />
+                                    <input id="1" onclick="checkServiceInput()" type='text' name="select-service-input-1" class="rounded form-select-setting-select-service-input" placeholder="Впишіть послугу" />
+                                </div>
+                                <button value="ok" name="add-service-btn" class="btn btn-outline-primary w-100 btn-add-service" type="submit">Додати послугу</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-box-flex">
+                    <div class=" col-xl-6 setting-children">
+                        <div class="bg-secondary rounded align-items-center p-4">
+                            <h6>Видалити категорію</h6>
+                            <form method="POST">
+                                <p class="form-select-setting-shop-delete form-select">Виберіть категорію</p>
+                                <div class="setting-service-select-delete"></div>
+                                <input type='hidden' name="form-setting-select-input-delete" id="form-setting-select-input-delete" />
+                                <button value="ok" name="category-delete-btn" class="btn btn-outline-primary w-100 btn-add-service-delete" type="submit">Видалити категорію</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 setting-children">
+                        <div class="bg-secondary rounded p-4">
+                            <h6>Видалити послуги</h6>
+                            <form method="POST">
+                                <input type='hidden' name="input-delete-service" id="input-delete-service" />
+                                <p class="form-select-setting-shop-delete-service form-select">Виберіть категорію</p>
+                                <div class="setting-service-select-delete-service"></div>
+                                <div class="setting-select-delete-service"></div>
+                                <button value="ok" name="delete-service-btn" class="btn btn-outline-primary w-100 input-delete-service-btn" type="submit">Зберегти зміни</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="today-master-status bg-secondary h_6 text-center rounded">
+                <h6>Запис і редагування статусу майстрiв</h6>
+                <i class="fa-solid fa-chevron-down setting-arrow-down"></i>
+            </div>
+            <div class="container-fluid px-4 padding-zero setting-add-delete-status">
+                <div class="setting-box-flex">
+                    <div class=" col-xl-6 setting-children">
+                        <div class="bg-secondary rounded align-items-center p-4 ">
+                            <h6>Додати статус</h6>
+                            <form method="POST">
+                                <div class="add-status-input-main">
+                                    <input onclick="checkStatusInput()" type="text" name="add-status-input-1" class="rounded add-status-input" placeholder="Впишіть статус">
+                                </div>
+                                <button value="ok" name="add-status-btn" class="btn btn-outline-primary w-100 btn-add-status" type="submit">Додати статус</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class=" col-xl-6 setting-children">
+                        <div class="bg-secondary rounded align-items-center p-4">
+                            <h6>Видалити статус</h6>
+                            <form method="POST">
+                                <p class="setting-status-delete-click form-select">Виберіть статус</p>
+                                <div class="setting-status-delete"></div>
+                                <input type='hidden' name="input-delete-status" id="setting-status-input-delete" />
+                                <button value="ok" name="status-delete-btn" class="btn btn-outline-primary w-100 btn-delete-status-delete" type="submit">Видалити статус</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="today-master-grafik bg-secondary h_6 text-center rounded">
+                <h6>Запис і редагування робочого графіку</h6>
+                <i class="fa-solid fa-chevron-down setting-arrow-down"></i>
+            </div>
+            <form method="POST">
+                <div class="container-fluid px-4 padding-zero setting-master-grafik">
+                    <div class="setting-box-flex">
+                        <div class=" col-xl-4 setting-grafik">
+                            <div class="bg-secondary rounded align-items-center p-4 ">
+                                <h6>Вибрати працівника</h6>
+                                <p class="setting-master-change-click-master form-select">Виберіть працівника</p>
+                                <input type='hidden' value='' name='setting-master-block-child-input' class='setting-master-block-child-input'>
+                                <div class="setting-master-block"></div>
+                            </div>
+                        </div>
+                        <div class=" col-xl-4 setting-grafik">
+                            <div class="bg-secondary rounded align-items-center p-4 ">
+                                <h6>Вибрати місяць</h6>
+                                <p class="setting-master-change-click-mounth form-select">Виберіть місяць</p>
+                                <input type="hidden" id="mount-number-click-id" value="">
+                                <input type="hidden" id="year-number-click-id" value="">
+                                <div class="setting-grafik-mouth">
+                                    <p id="01">Січень</p>
+                                    <p id="02">Лютий</p>
+                                    <p id="03">Березень</p>
+                                    <p id="04">Квітень</p>
+                                    <p id="05">Травень</p>
+                                    <p id="06">Червень</p>
+                                    <p id="07">Липень</p>
+                                    <p id="08">Серпень</p>
+                                    <p id="09">Вересень</p>
+                                    <p id="10">Жовтень</p>
+                                    <p id="11">Листопад</p>
+                                    <p id="12">Грудень</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-xl-4 setting-grafik">
+                            <div class="bg-secondary rounded align-items-center p-4 ">
+                                <h6>Вибрати час <span class="setting-start-end-time">(початок-кінець зміни)</span></h6>
+                                <div class="add-grafik-input-main">
+                                    <input type="hidden" name="setting-time-start-input" id="setting-time-start-input" value="">
+                                    <input type="hidden" name="setting-time-stop-input" id="setting-time-stop-input" value="">
+                                    <input onclick="checkTimeStartInput()" class="setting-time-start" type="time">
+                                    <input onclick="checkTimeStopInput()" class="setting-time-stop" type="time">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-box-flex">
+                        <div class=" col-xl-6 setting-children">
+                            <div class="bg-secondary rounded align-items-center p-4 ">
+                                <h6>Вибрати варінт змін</h6>
+                                <p class="setting-master-change-click-variantes form-select">Виберіть варінт змін</p>
+                                <input type="hidden" name="input-variables-work" class="input-variables-work" value="">
+                                <div class="setting-master-block-variantes">
+                                    <p id="1-1">1 - 1</p>
+                                    <p id="2-2">2 - 2</p>
+                                    <p id="3-3">3 - 3</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-xl-6 setting-children">
+                            <div class="bg-secondary rounded align-items-center p-4 ">
+                                <h6>Вибрати дати <span class="setting-start-end-time">(початок-кінець змін)</span></h6>
+                                <div class="add-grafik-input-main-day d-flex">
+                                    <input type="hidden" id="input-setting-day-start" name="setting-day-start" value="">
+                                    <input type="hidden" id="input-setting-day-end" name="setting-day-end" value="">
+                                    <input id="myDate" class="setting-day-start" type="date" value="" placeholder="Перша зміна">
+                                    <input id="setting-day-end" class="setting-day-end" type="date" value="" placeholder="Остання зміна">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" col-xl-12 ">
+                        <div class="bg-secondary rounded align-items-center p-4">
+                            <h6 class="setting-grafik-h6">Графік <span class="grafik-mounth-name"></span> <span class="grafik-master-name"></span></h6>
+                            <div class="setting-master-grafik-form-add d-flex"></div>
+                            <div class="d-flex justify-beetwen setting-master-grafik-form-set-btn">
+                                <button value="ok" name="grafik-add-btn" class="btn btn-outline-primary w-100 btn-add-grafik" type="submit">Записати</button>
+                                <span class="edit-time-btn">Налаштування робочих годин
+                                    <input type="hidden" id="input-for-id-master" value="">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <div class="setting-grafik-time-main">
+        <h6 class="setting-grafik-time-main-h6">Налаштування робочих годин <p><span class="setting-grafik-time-name"></span> <span class="setting-grafik-time-month"></span></p><span class="edit-setting-closed-span"><i class="fa-solid fa-xmark"></i></span></h6>
+        <form method="POST">
+            <div class="setting-grafik-time-block">
+            </div>
+            <button value="ok" name="change-time-btn" class="btn btn-outline-primary w-100 grafik-change-time-btn" type="submit">Записати</button>
+            <input type="hidden" name="change_time_id_input" id="change_time_id_input" value="">
+        </form>
+    </div>
+</div>
+ <script>
+    // let service = JSON.parse('<?php echo json_encode($service_network_js) ?>', 'UTF-8');
+    // let status = JSON.parse('<?php echo json_encode($allStatusFromNetwork) ?>', 'UTF-8');
+    // let time_work_start = JSON.parse('<?php echo json_encode($_SESSION['network_data']['time_work_start']) ?>', 'UTF-8');
+    // let time_work_stop = JSON.parse('<?php echo json_encode($_SESSION['network_data']['time_work_stop']) ?>', 'UTF-8');
+    $(document).ready(function() {
+        // all_masters.forEach(element => {
+        //     $('.setting-master-block').append(`<p class="setting-master-block-child" id="${element.id_master}">${element.name}</p>`);
+        // });
+    })
+
+    const MOUNTH = {
+        Січень: 0,
+        Лютий: 1,
+        Березень: 2,
+        Квітень: 3,
+        Травень: 4,
+        Червень: 5,
+        Липень: 6,
+        Серпень: 7,
+        Вересень: 8,
+        Жовтень: 9,
+        Листопад: 10,
+        Грудень: 11
+    };
+    $(document).ready(function() {
+        $('#year-number-click-id').val(`${new Date().getFullYear()}`)
+        let temp_month = new Date().getMonth() + 1;
+        if (temp_month < 10) temp_month = '0' + temp_month;
+        $('#mount-number-click-id').val(temp_month)
+
+        ///////
+        $('#myDate,#setting-day-end,.setting-time-start,.setting-time-stop').click(function() {
+            $('.setting-master-change-click-variantes').html('Виберіть варінт змін');
+            // $('.setting-master-grafik-form-add div').removeClass('setting-master-calendar-click-color');
+        })
+        //////
+        $('.grafik-mounth-name').click(function() {
+            if ($('.setting-master-block-child-input').val() == '') {
+                $('.setting-master-block').slideDown('slow')
+            }
+        })
+    })
+
+    function search(arr, value) {
+        if (!(arr instanceof Array)) return value == arr;
+        return arr.some(item => search(item, value));
+    }
+    //////////////
+    $(document).ready(function() {
+        $('.setting-master-change-click-variantes').click(function() {
+            if ($('.setting-master-block-child-input').val() == '') {
+                $('.setting-master-block').slideDown('slow')
+            } else {
+                $('.setting-master-block-variantes').slideToggle().css('display', 'flex');
+                $('.setting-master-block').slideUp();
+            }
+        })
+
+        $('.setting-master-block-variantes p').click(function() {
+            $('.setting-master-grafik-form-add div').removeClass('setting-master-calendar-click-color');
+            $('.setting-master-block-variantes').slideToggle();
+            $('.setting-master-change-click-variantes').html(`${$(this).html()}`).css('color', '#45f3ff');
+            $('.input-variables-work').val(`${$(this).html()}`);
+            $('.edit-time-btn').fadeOut();
+
+
+            /////////////варіанти змін
+            let arr_grafik = [];
+            let grafik_count = parseInt($('#input-setting-day-start').val().split('/')[0]);
+            while (grafik_count <= parseInt($('#input-setting-day-end').val().split('/')[0])) {
+                let temp_count_grafik = grafik_count;
+                while (grafik_count < (temp_count_grafik + parseInt(this.id.split('-')[0]))) {
+                    arr_grafik.push(grafik_count);
+                    grafik_count++;
+                }
+                grafik_count += parseInt(this.id.split('-')[0]);
+                if (grafik_count + parseInt(this.id.split('-')[0]) > parseInt($('#input-setting-day-end').val().split('/')[0])) {
+                    while (grafik_count <= parseInt($('#input-setting-day-end').val().split('/')[0])) {
+                        arr_grafik.push(grafik_count);
+                        grafik_count++;
+                    }
+                }
+            }
+            // arr_grafik.forEach(element => {
+            //     $('.setting-master-grafik-form-add div').each(function() {
+            //         if (element == this.id) $(this).addClass('setting-master-calendar-click-color');
+            //         if ($(this).hasClass('setting-master-calendar-click-color')) {
+            //             $(this).append(`<input id='${this.id}' value="${this.id}/${$('#mount-number-click-id').val()}/${$('#year-number-click-id').val()}" type="hidden" name="workday_${this.id}">`)
+            //         } else {
+            //             $(this).children('input').remove()
+            //         }
+            //     })
+            // })
+            ////////
+        })
+
+        for (i in MOUNTH) {
+            if (MOUNTH[i] == new Date().getMonth()) {
+                $('.grafik-mounth-name').html(`на ${i} ${new Date().getFullYear()}`).css('padding', '10px')
+
+            }
+        }
+
+    })
+    //////////////first day of mounth
+    $(document).ready(function() {
+        $('#input-setting-day-start').val(`${new Date().toString().substr(8, 2)}/${new Date().getMonth()+1}/${new Date().getFullYear()}`);
+        // document.getElementById('myDate').valueAsDate = new Date();
+        // let setting_now_day = $('#input-setting-day-start').val().split('-');
+        // $('#input-setting-day-start').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+        $('.setting-day-start').change(function() {
+            $('#input-setting-day-start').val($('#myDate').val())
+            let setting_now_day = $('#input-setting-day-start').val().split('-');
+            $('#input-setting-day-start').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+
+        })
+    })
+    ///////////////// last day of mounth
+    $(document).ready(function() {
+        let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+        $('#input-setting-day-end').val(`${lastDayOfMonth.getDate()}/${lastDayOfMonth.getMonth()+1}/${new Date().getFullYear()}`)
+        // document.getElementById('setting-day-end').valueAsDate = lastDayOfMonth;
+        // $('#input-setting-day-end').val($('#setting-day-end').val())
+        // let setting_now_day = $('#input-setting-day-end').val().split('-');
+        // $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+        $('.setting-day-end').change(function() {
+            $('#input-setting-day-end').val($('#setting-day-end').val())
+            let setting_now_day = $('#input-setting-day-end').val().split('-');
+            $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+        })
+    })
+    //////////////
+    function checkTimeStartInput() {
+        $('.setting-time-start').on('input', function() {
+            $('#setting-time-start-input').val($('.setting-time-start').val())
+        })
+    }
+
+    function checkTimeStopInput() {
+        $('.setting-time-stop').on('input', function() {
+            $('#setting-time-stop-input').val($('.setting-time-stop').val())
+        })
+    }
+    //////////
+    $(function() {
+        // $('.setting-time-start,#setting-time-start-input').val(time_work_start);
+        // $('.setting-time-stop,#setting-time-stop-input').val(time_work_stop);
+    })
+    /////////////////
+    $(document).ready(function() {
+        $('.setting-master-change-click-master').click(function() {
+            $('.setting-master-block p').remove();
+            // all_masters.forEach(element => {
+            //     $('.setting-master-block').append(`<p class="setting-master-block-child" id="${element.id_master}">${element.name}</p>`);
+            // });
+            $('.setting-master-block').slideToggle()
+            $('.setting-grafik-mouth').slideUp();
+        })
+
+        $('.setting-master-block').on('click', '.setting-master-block-child', function() {
+            $('.btn-add-grafik').show();
+            $('.setting-master-grafik-form-add div').removeClass('setting-master-calendar-click-color');
+            $('.setting-master-block').slideToggle('slow');
+            $('.setting-master-change-click-master').html(`${$(this).html()}`).css('color', '#45f3ff');
+            $('.grafik-master-name').html(` для ${$(this).html()}`).css('padding', '10px');
+            $('.setting-master-block-child-input,#input-for-id-master').val(`${this.id}`);
+            $('.setting-grafik-mouth').slideDown('slow').css('display', 'flex');
+            $('.setting-master-change-click-variantes').html('Виберіть варінт змін')
+            // all_masters.forEach(element => {
+            //     if (this.id == element.id_master) {
+            //         element.work_day.forEach(work_day => {
+            //             console.log(work_day)
+            //             if ($('#mount-number-click-id').val() == work_day.day.split('/')[1] && $('#year-number-click-id').val() == work_day.day.split('/')[2]) {
+            //                 $('.setting-master-grafik-form-add div').each(function() {
+            //                     if (this.id == work_day.day.split('/')[0]) {
+            //                         $(this).addClass('setting-master-calendar-click-color');
+            //                         $(this).append(`<input id='${this.id}' value="${this.id}/${$('#mount-number-click-id').val()}/${$('#year-number-click-id').val()}" type="hidden" name="workday_${this.id}">`);
+            //                         $(this).append(`<input id='start_time_${work_day.day}' value="${work_day.time.split('-')[0]}" type="hidden" name="start_time">`);
+            //                         $(this).append(`<input id='end_time_${work_day.day}' value="${work_day.time.split('-')[1]}" type="hidden" name="end_time">`);
+            //                     }
+            //                 })
+            //             }
+            //         });
+            //     }
+            // })
+            if ($('.setting-master-grafik-form-add div').hasClass('setting-master-calendar-click-color')) {
+                $('.edit-time-btn').fadeIn()
+            } else {
+                $('.edit-time-btn').fadeOut()
+            }
+        })
+    })
+
+    /////////////////
+    /////////////////
+    $(document).ready(function() {
+        let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+        let temp_last_day_of_month = lastDayOfMonth.toString().substr(8, 2);
+
+        for (i = new Date().getDate(); i <= parseInt(temp_last_day_of_month); i++) {
+            let i_temp = i;
+            if (i_temp < 10) i_temp = '0' + i_temp;
+            $('.setting-master-grafik-form-add').append(`<div id="${i_temp}" class="setting-master-calendar-click">${i}</div>`)
+        }
+        $('.setting-master-calendar-click').click(function() {
+            $('.edit-time-btn').fadeOut()
+            $(this).toggleClass('setting-master-calendar-click-color');
+            if ($(this).hasClass('setting-master-calendar-click-color')) {
+                let temp_month = new Date().getMonth() + 1;
+                if (temp_month < 10) temp_month = '0' + temp_month;
+                $(this).append(`<input id='${this.id}' value="${this.id}/${temp_month}/${new Date().getFullYear()}" type="hidden" name="workday_${this.id}">`)
+            } else {
+                $(this).children('input').remove()
+            }
+        })
+    })
+
+    /////////////////
+    /////////////////
+    $(document).ready(function() {
+        $('.setting-master-change-click-mounth').click(function() {
+            if ($('.setting-master-block-child-input').val() == '') {
+                $('.setting-master-block').slideDown()
+            } else {
+                $('.setting-grafik-mouth').slideToggle('slow').css('display', 'flex');
+                $('.setting-master-block').slideUp('slow')
+            }
+        })
+        $('.setting-grafik-mouth p').click(function() {
+            $('.setting-master-grafik-form-add div').remove()
+            $('#mount-number-click-id').val(this.id);
+            $('.setting-master-change-click-variantes').html('Виберіть варінт змін')
+
+            let year = new Date().getFullYear();
+            let month;
+            for (i in MOUNTH) {
+                if ($(this).html() == i) {
+                    if (MOUNTH[i] < new Date().getMonth()) {
+                        year = year + 1;
+                        month = MOUNTH[i];
+
+                    } else if (MOUNTH[i] >= new Date().getMonth()) {
+                        month = MOUNTH[i];
+                    }
+                }
+            }
+
+            $('#year-number-click-id').val(year)
+
+            date = new Date(year, month);
+            firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+            lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+
+
+            $('#input-setting-day-start').val(`${firstDay.getDate()}/${firstDay.getMonth()+1}/${year}`)
+            $('#input-setting-day-end').val(`${lastDay.getDate()}/${lastDay.getMonth()+1}/${year}`)
+
+            if (month == new Date().getMonth()) {
+                $('.setting-master-calendar-click').remove();
+                for (i = new Date().getDate(); i <= lastDay.getDate(); i++) {
+                    let i_temp = i;
+                    if (i_temp < 10) i_temp = '0' + i_temp;
+                    $('.setting-master-grafik-form-add').append(`<div id="${i_temp}" class="setting-master-calendar-click">${i}</div>`)
+                }
+                $('#input-setting-day-start').val(`${new Date().toString().substr(8, 2)}/${firstDay.getMonth()+1}/${year}`)
+
+                //////////first day input
+                // $('#input-setting-day-start').val('');
+                // document.getElementById('myDate').valueAsDate = firstDay;
+
+                // let setting_now_day_1 = $('#input-setting-day-start').val().split('-');
+                // $('#input-setting-day-start').val(`${setting_now_day_1[2]}/${setting_now_day_1[1]}/${setting_now_day_1[0]}`)
+                // $('.setting-day-start').change(function() {
+                //     $('#input-setting-day-start').val($('#myDate').val())
+                //     let setting_now_day_1 = $('#input-setting-day-start').val().split('-');
+                //     $('#input-setting-day-start').val(`${setting_now_day_1[2]}/${setting_now_day_1[1]}/${setting_now_day_1[0]}`)
+                // })
+                /////////////
+                //////////last day input
+                // $('#input-setting-day-end').val('');
+
+                // document.getElementById('setting-day-end').valueAsDate = lastDay;
+                // $('#input-setting-day-end').val($('#setting-day-end').val())
+                // let setting_now_day = $('#input-setting-day-end').val().split('-');
+                // $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+                // $('.setting-day-end').change(function() {
+                //     $('#input-setting-day-end').val($('#setting-day-end').val())
+                //     let setting_now_day = $('#input-setting-day-end').val().split('-');
+                //     $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+                // })
+                /////////
+
+            } else {
+                for (i = firstDay.getDate(); i <= lastDay.getDate(); i++) {
+                    let i_temp = i;
+                    if (i_temp < 10) i_temp = '0' + i_temp;
+                    $('.setting-master-grafik-form-add').append(`<div id="${i_temp}" class="setting-master-calendar-click">${i}</div>`)
+                }
+                //////////first day input
+                // $('#input-setting-day-start').val('');
+                // document.getElementById('myDate').valueAsDate = firstDay;
+
+                // let setting_now_day_1 = $('#input-setting-day-start').val().split('-');
+                // $('#input-setting-day-start').val(`${setting_now_day_1[2]}/${setting_now_day_1[1]}/${setting_now_day_1[0]}`)
+                // $('.setting-day-start').change(function() {
+                //     $('#input-setting-day-start').val($('#myDate').val())
+                //     let setting_now_day_1 = $('#input-setting-day-start').val().split('-');
+                //     $('#input-setting-day-start').val(`${setting_now_day_1[2]}/${setting_now_day_1[1]}/${setting_now_day_1[0]}`)
+                // })
+                /////////////
+                //////////last day input
+                // $('#input-setting-day-end').val('');
+
+                // document.getElementById('setting-day-end').valueAsDate = lastDay;
+                // $('#input-setting-day-end').val($('#setting-day-end').val())
+                // let setting_now_day = $('#input-setting-day-end').val().split('-');
+                // $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+                // $('.setting-day-end').change(function() {
+                //     $('#input-setting-day-end').val($('#setting-day-end').val())
+                //     let setting_now_day = $('#input-setting-day-end').val().split('-');
+                //     $('#input-setting-day-end').val(`${setting_now_day[2]}/${setting_now_day[1]}/${setting_now_day[0]}`)
+                // })
+                /////////
+
+
+            }
+            let temp_mounth = parseInt(month);
+            temp_mounth = temp_mounth + 1;
+            if (temp_mounth < 10) temp_mounth = '0' + temp_mounth;
+            $('.setting-master-calendar-click').click(function() {
+                let temp_day = this.id;
+                if (temp_day < 10) temp_day = '0' + temp_day;
+                $(this).toggleClass('setting-master-calendar-click-color');
+                if ($(this).hasClass('setting-master-calendar-click-color')) {
+                    $(this).append(`<input id='${this.id}' value="${temp_day}/${temp_mounth}/${year}" type="hidden" name="work_day_${this.id}">`)
+                } else {
+                    $(this).children('input').remove()
+                }
+            })
+            $('.setting-master-change-click-mounth').html($(this).html() + " " + year).css('color', '#45f3ff');
+            $('.grafik-mounth-name').html(' на ' + $(this).html() + ' ' + year).css('padding', '10px');
+            $('.setting-grafik-mouth').slideToggle()
+
+            // all_masters.forEach(element => {
+            //     if ($('.setting-master-block-child-input').val() == element.id_master) {
+            //         element.work_day.forEach(work_day => {
+            //             if (work_day.day.split('/')[1] == this.id && work_day.day.split('/')[2] == year) {
+            //                 $('.setting-master-grafik-form-add div').each(function() {
+            //                     if (this.id == work_day.day.split('/')[0]) {
+            //                         $(this).addClass('setting-master-calendar-click-color');
+            //                         $(this).append(`<input id='${this.id}' value="${this.id}/${$('#mount-number-click-id').val()}/${$('#year-number-click-id').val()}" type="hidden" name="workday_${this.id}">`);
+            //                     }
+            //                 })
+            //             }
+            //         });
+            //     }
+            // })
+            if ($('.setting-master-grafik-form-add div').hasClass('setting-master-calendar-click-color')) {
+                $('.edit-time-btn').fadeIn()
+            } else {
+                $('.edit-time-btn').fadeOut()
+            }
+            $('.setting-master-calendar-click').click(function() {
+                $('.edit-time-btn').fadeOut()
+            })
+        })
+    })
+    /////////////////
+    $('.today-master-status').click(function() {
+        $('.setting-add-delete-status').slideToggle()
+        $('.setting-add-delete-service,.setting-master-grafik').slideUp()
+    })
+
+    ////////////////////
+    /////////////////
+    $('.today-master-service').click(function() {
+        $('.setting-add-delete-service').slideToggle()
+        $('.setting-add-delete-status,.setting-master-grafik').slideUp()
+    })
+
+    ////////////////////
+    $('.today-master-grafik').click(function() {
+        $('.setting-master-grafik').slideToggle();
+        $('.setting-add-delete-status,.setting-add-delete-service').slideUp();
+    })
+    ////////////
+    $(function() {
+        $('.form-select-setting-shop').click(function() {
+            $('.setting-service-select p').remove();
+            // service.forEach(element => {
+            //     $('.setting-service-select').append(`<p class='setting-service-select-child' id="${Object.keys(element)}">${Object.keys(element)}</p>`);
+            // });
+            $('.setting-service-select').slideToggle()
+            $('.setting-service-select-delete-service,.setting-service-select-delete-service').slideUp()
+        })
+    })
+    /////////
+    $(function() {
+        $('.form-select-setting-shop-delete').click(function() {
+            $('.setting-service-select-delete p').remove();
+            // service.forEach(element => {
+            //     $('.setting-service-select-delete').append(`<p class='setting-service-select-child-delete' id="${Object.keys(element)}">${Object.keys(element)}</p>`);
+            // });
+            $('.setting-service-select-delete').slideToggle()
+            $('.setting-service-select,.setting-service-select-delete-service').slideUp()
+        })
+    })
+    /////////////////
+    $(function() {
+        $('.form-select-setting-shop-delete-service').click(function() {
+            $('.setting-service-select-delete-service p,.setting-select-delete-service p').remove();
+            // service.forEach(element => {
+            //     $('.setting-service-select-delete-service').append(`<p class='setting-select-child-delete-service' id="${Object.keys(element)}">${Object.keys(element)}</p>`);
+            // });
+            $('.setting-service-select-delete-service').slideToggle()
+            $('.setting-service-select,.setting-service-select-delete').slideUp()
+        })
+    })
+    //////////////
+    /////////////////
+    $(function() {
+        $('.setting-status-delete-click').click(function() {
+            $('.setting-status-delete p').remove();
+            // status.forEach(element => {
+            //     $('.setting-status-delete').append(`<p class='setting-status-child-delete' id="${element}">${element}</p>`);
+            // });
+            $('.setting-status-delete').slideToggle()
+        })
+    })
+    //////////////
+    let statut_input_count = 2;
+
+    function checkStatusInput() {
+        $('.setting-status-child-delete').slideUp();
+        $('.add-status-input-main').append(`<input onclick="checkStatusInput()" type="text" name="add-category-input-${statut_input_count}" class="rounded add-status-input" placeholder="Впишіть статус">`);
+        $('.add-category-input').fadeIn();
+        $('.add-status-input').on('input', function() {
+            if ($('.add-status-input').val().length <= 0) {
+                $('.btn-add-status').fadeOut();
+                $('.add-status-input').css('border', '1px solid red')
+            } else {
+                $('.btn-add-status').fadeIn();
+                $('.add-status-input').css('border', '1px solid #45f3ff')
+            }
+        })
+        statut_input_count++;
+    }
+    ////////////////////////
+    //////////////
+    let category_input_count = 2;
+
+    function checkCategoryInput() {
+        $('.setting-service-select,.setting-service-select-delete,.setting-service-select-delete-service').slideUp()
+        $('.add-category-input-main').append(`<input onclick="checkCategoryInput()" type="text" name="add-category-input-${category_input_count}" class="rounded add-category-input" placeholder="Впишіть категорію">`);
+        $('.add-category-input').on('input', function() {
+            if ($('.add-category-input').val().length <= 0) {
+                $('.btn-add-category').fadeOut();
+                $('.add-category-input').css('border', '1px solid red')
+            } else {
+                $('.btn-add-category').fadeIn();
+                $('.add-category-input').css('border', '1px solid #45f3ff')
+            }
+        })
+        category_input_count++;
+    }
+    ////////////////////////
+    let id_servise_input = 2;
+
+    function checkServiceInput() {
+        $('.form-select-setting-select-parent').append(`<input id='${id_servise_input}' onclick="checkServiceInput()" type='text' name="select-service-input-${id_servise_input}" class="rounded form-select-setting-select-service-input" placeholder="Впишіть послугу" />`);
+        $('.form-select-setting-select-service-input').fadeIn();
+        $('.form-select-setting-select-service-input').on('input', function() {
+            if ($('.form-select-setting-select-service-input').val().length <= 0) {
+                $('.btn-add-service').fadeOut();
+                $('.form-select-setting-select-service-input').css('border', '1px solid red')
+            } else {
+                $('.btn-add-service').fadeIn();
+                $('.form-select-setting-select-service-input').css('border', '1px solid #45f3ff')
+            }
+        })
+        id_servise_input++;
+    }
+    ///////////////////
+    $(document).ready(function() {
+        $('.setting-status-delete').on('click', '.setting-status-child-delete', function() {
+            $('.setting-status-delete-click').html(this.id);
+            $('#setting-status-input-delete').val(this.id);
+            $('.setting-status-delete').slideToggle();
+            $('.btn-delete-status-delete').fadeIn();
+            $('.setting-status-delete-click').css('color', '#45f3ff')
+        })
+    })
+    ////////////
+    ///////////////////
+    $(document).ready(function() {
+        $('.setting-service-select').on('click', '.setting-service-select-child', function() {
+            $('.form-select-setting-shop').html(this.id);
+            $('#form-setting-select-input').val(this.id);
+            $('.setting-service-select').slideToggle();
+            $('.form-select-setting-select-service-input').fadeIn();
+            $('.form-select-setting-shop ').css('color', '#45f3ff')
+        })
+    })
+    ////////////
+    $(document).ready(function() {
+        $('.setting-service-select-delete').on('click', '.setting-service-select-child-delete', function() {
+            $('.form-select-setting-shop-delete').html(this.id);
+            $('#form-setting-select-input-delete').val(this.id);
+            $('.setting-service-select-delete').slideToggle();
+            $('.form-select-setting-select-service-input-delete,.btn-add-service-delete').fadeIn();
+            $('.form-select-setting-shop-delete ').css('color', '#45f3ff')
+        })
+    })
+    ////////////////////
+
+    $(document).ready(function() {
+
+        $('.setting-service-select-delete-service').on('click', '.setting-select-child-delete-service', function() {
+            $('.setting-select-delete-service p').remove()
+            $('.form-select-setting-shop-delete-service').html(this.id);
+            $('#input-delete-service').val(this.id);
+            $('.setting-service-select-delete-service').slideToggle();
+            $('.setting-select-delete-service').fadeIn();
+            $('.setting-shop-delete-service').fadeIn();
+            $('.form-select-setting-shop-delete-service').css('color', '#45f3ff')
+            // service.forEach(element => {
+            //     if (Object.keys(element) == $('#input-delete-service').val()) {
+            //         element[Object.keys(element)].forEach(el => {
+            //             $('.setting-select-delete-service').append(`<p id='${el}' class="setting-select-delete-service-child"><i id='${el}' class="delete-service-child-icon fa-solid fa-xmark"></i> ${el}</p>`)
+            //         })
+            //     }
+            // });
+        })
+    })
+    ///////////////
+    let delete_service_input_count = 0;
+    $(document).ready(function() {
+        $('.setting-select-delete-service').on('click', '.delete-service-child-icon', function() {
+            $('.setting-select-delete-service').append(`<input type='hidden' value='${this.id}' name='delete-service-input-${delete_service_input_count}'/>`);
+            $(this).parent('p').remove();
+            $('.input-delete-service-btn').fadeIn();
+            delete_service_input_count++;
+        })
+    })
+    ////////
+    ////////setting time window
+    $(document).ready(function() {
+        $('.edit-time-btn').click(function() {
+            $('.setting-grafik-time-block p').remove();
+            $('.setting-grafik-time-main').fadeIn();
+            $('.setting-grafik-time-name').html($('.grafik-master-name').html());
+            $('.setting-grafik-time-month').html($('.grafik-mounth-name').html());
+            let arr_temp_day = [];
+            $('.setting-master-grafik-form-add input').each(function() {
+                arr_temp_day += '&' + $(this).val();
+            });
+            arr_temp_day = new Set(arr_temp_day.split('&').filter(Boolean))
+            temp_count = 1;
+            // arr_temp_day.forEach(element => {
+
+            //     all_masters.forEach(el => {
+                    
+            //         if (el.id_master == $('#input-for-id-master').val()) {
+
+            //             el.work_day.forEach(work => {
+            //                 if (element == work.day) {
+            //                     $('.setting-grafik-time-block').append(`<p>${element.replaceAll('/','-')} 
+            //     <input id='start_inp_time_${temp_count}' class="setting-edit-time-start-input" type="time" value='${work.time.split('-')[0]}'>
+            //     <input id='end_inp_time_${temp_count}' class="setting-edit-time-end-input" type="time" value='${work.time.split('-')[1]}'>
+            //     <input name='setting-edit-time-start-input-${element}' class="setting-edit-time-start-input-hidden" type="hidden" value='${work.time.split('-')[0]}'>
+            //     <input name="setting-edit-time-end-input-${element}" class="setting-edit-time-end-input-hidden" type="hidden" value='${work.time.split('-')[1]}'>
+            //     </p> `);
+            //                     temp_count++;
+            //                 }
+            //             });
+            //         }
+            //     });
+            });
+            // $('.setting-edit-time-start-input').val(time_work_start);
+            // $('.setting-edit-time-end-input').val(time_work_stop);
+            $('.setting-grafik-time-main').css(`margin-left`, `-${document.querySelector('.setting-grafik-time-main').offsetWidth / 2}px`)
+            $('#change_time_id_input').val($('#input-for-id-master').val())
+        // })
+        $('.edit-setting-closed-span').click(function() {
+            $('.setting-grafik-time-main').fadeOut();
+        })
+    })
+    ////////
+    $(document).ready(function() {
+        for (i = 1; i <= 31; i++) {
+            $('.setting-grafik-time-block').on('change', `#start_inp_time_${i}`, function() {
+                $('.grafik-change-time-btn').fadeIn('slow');
+                $(this).closest('p').find(`.setting-edit-time-start-input-hidden`).val($(this).closest('p').find(`.setting-edit-time-start-input`).val())
+            })
+            $('.setting-grafik-time-block').on('change', `#end_inp_time_${i}`, function() {
+                $('.grafik-change-time-btn').fadeIn('slow');
+                $(this).closest('p').find(`.setting-edit-time-end-input-hidden`).val($(this).closest('p').find(`.setting-edit-time-end-input`).val())
+            })
+        }
+    })
+</script> 

@@ -1,0 +1,309 @@
+<!-- Recent Sales Start -->
+<div class="container-fluid pt-4 px-4 edit-master-container">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Особисті дані працівника</h6>
+            <a href="#" class="edit-button-cancel nav-bar-click" id="main_admin_home.html"> Відмінити <i
+                    class="fa-solid fa-xmark"></i></a>
+
+        </div>
+        <form enctype="multipart/form-data" action="" method="post" class="form_add_master">
+            <div>
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <tbody class="edit-data-master">
+                        <tr>
+                            <td class='width'>Ім'я майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square master-i"></i><input
+                                    placeholder="Впишіть ім'я" class="name-master edit-input" data_post="singl"
+                                    name="name_user" value="" require /></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Статус майстра </td>
+                            <td class="edit-data-master-td"><i onclick="showCheckboxesStatus()"
+                                    class="icon-seleсt-status fa-solid fa-pen-to-square "></i>
+
+                                <div class="multiselect-status">
+                                    <div class="selectBox-status" onclick="showCheckboxesStatus()">
+                                        <select>
+                                            <option>Виберіть статус</option>
+                                        </select>
+                                        <div class="overSelect-status"></div>
+                                    </div>
+                                    <div id="checkboxes-status" class="checkboxes-status">
+                                        <!-- <label for='$st'><input name='status' class='checkboxes-input' type='checkbox'
+                                                id='$st' /></label> -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="edit-data-master-td-img">
+                            <td class='width'>Фото майстра </td>
+                            <td class="edit-data-master-td edit-data-master-td-in">
+                                
+                                <label for="file">
+                                    <i class="fa-solid fa-pen-to-square change-foto"></i>
+                                    <input placeholder="" id="file" data-file="file" name="file" type="file">
+                                </label>
+                                <img id="pre_i" type="hidden" src="">
+                                <span class="edit-data-master-td-img-span">Натисніть на іконку та завантажте фото</span>
+                                <span class="edit-data-master-td-img-info">foto info</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Контакт майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть контакт" id="userPhone" class="edit-input" data_post="singl"
+                                    name="contact_user" value="" require /></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Адреса майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть адрес" class="edit-input" name="adres_user" data_post="singl"
+                                    value="" require />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='width'>E-mail майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть email" class="edit-input" name="email_user" data_post="singl"
+                                    value="" require /></td>
+                        </tr>
+
+                        <tr>
+                            <td class='width'>Паспорт майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть номер паспорту" class="edit-input" data_post="singl"
+                                    name="pasport_data_user" value="" require /></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>ІПН майстра </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть номер ІПН" type="number" class="edit-input" data_post="singl"
+                                    name="ipn_user" value="" require /></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Працює від </td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><input
+                                    placeholder="Впишіть дату початку роботи" class="edit-input" id="mydata"
+                                    maxlength="10" data_post="singl" name="work_start_date_user" value="" require /></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Відсоток від замовлень</td>
+                            <td class="edit-data-master-td"><i class="fa-solid fa-pen-to-square"></i><label
+                                    for='procent_front_order'><input type="number" placeholder="Впишіть відсоток"
+                                        class="edit-input" data_post="singl" name="procent_from_order_user" value=""
+                                        require /></label></td>
+                        </tr>
+                        <tr>
+                            <td class='width'>Послуги</td>
+                            <td class="edit-data-master-td"><i onclick="showCheckboxes()"
+                                    class="icon-seleсt fa-solid fa-pen-to-square "></i>
+                                <div class="multiselect">
+                                    <div class="selectBox" onclick="showCheckboxes()">
+                                        <select>
+                                            <option>Виберіть послуги</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="checkboxes">
+
+
+                                        <!--                                         <div class='checkbox-unit'><label for='$srv'><input name='service_$srv'
+                                                    class='checkboxes-input' type='checkbox' id='$srv'/>
+                                                </lable>
+                                                <p>
+                                                    <input class='edit-data-master-input edit-data-master-input-click'
+                                                        id='price_$srv' name='price_$srv' type='number'
+                                                        placeholder='ціна послуги' value='' require />
+                                                    <input class='edit-data-master-input mar-left' id='time_$srv'
+                                                        name='time_$srv' type='number' placeholder='час послуги'
+                                                        value='' require />
+                                                </p>
+                                        </div>
+ -->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="edit-data-master-button">
+                    <button class="add-master-save-btn" name="add_new_user" id="upload" type="button">Зберегти зміни</button>
+                </div>
+                <!-- <div class="service-edit-div">
+                    <a href="#" class="edit-button-cancel save-service-add-master closed-add-service" id="dont-save">
+                        Відмінити <i class="fa-solid fa-xmark"></i></a>
+                    <div class="col-sm-12 col-md-6 col-xl-4 add-service">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                            </div>
+                            <div class="d-flex mb-2">
+                                <input class="form-control bg-dark border-0 task-input-add-master" type="text"
+                                    placeholder="Впишіть послугу">
+                                <p onclick=taskBtn() class="task-button-add-master">Додати</з>
+                            </div>
+                            <div class="d-flex align-items-left border-bottom py-2 task-parent">
+                            </div>
+                        </div>
+                        <p class="save-service-add-master">Зберегти зміни</p>
+
+                    </div>
+                </div> -->
+
+            </div>
+        </form>
+    </div>
+</div>
+<script src="./front/add_master.js"></script>
+<!-- Recent Sales End -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>  -->
+<script>
+
+    // $(document).ready(function() {
+    //     $("#userPhone").mask("+38( 999 ) 999-99-99");
+    // });
+
+
+    $(function () {
+        // $('#change_serv_id').click(function() {
+        // $('.service-edit-div, .service-edit-item').css('display', 'block');
+        // $('.service-edit-commts').css('display', 'none');
+        // })
+        $('.service-edit-close').click(function () {
+            $('.service-edit-div, .service-edit-item').css('display', 'none');
+        })
+        $('#change_opinies_id').click(function () {
+            $('.service-edit-div, .service-edit-commts').css('display', 'block');
+            $('.service-edit-item').css('display', 'none');
+        })
+        $('.service-edit-close').click(function () {
+            $('.service-edit-div, .service-edit-commts').css('display', 'none');
+        })
+        $('.service-comment-close').click(function () {
+            $(this).parent().remove();
+        })
+    });
+    //////to do list
+    add_service_count = 1;
+
+    function taskBtn() {
+
+        let add_service_input = $('.task-input-add-master').val();
+        if (add_service_input != '') {
+            $('.task-parent').prepend(`<div class="d-flex w-100 align-items-center justify-content-between task-bottom-add-master"><span><input type="hidden" name="add_service_${add_service_count}" value="${add_service_input}" />${add_service_input}</span><button class="task-delete btn btn-sm text-primary"><i class="fa fa-times"></i></button></div>`)
+        }
+        $('.task-input-add-master').val('');
+        add_service_count++;
+    }
+    $(function () {
+        $(document).on('click', '.task-delete', function () {
+            $(this).parent().remove();
+        })
+
+        $('.closed-add-service').click(function () {
+            $('.service-edit-div').hide();
+            $('.task-parent').children().remove();
+        })
+    })
+
+    ///////////////////////
+    /////////mask for date
+    $(document).ready(function () {
+        var input = document.querySelectorAll('#mydata')[0];
+
+        var dateInputMask = function dateInputMask(elm) {
+
+            elm.addEventListener('keyup', function (e) {
+                if (e.keyCode < 47 || e.keyCode > 57) {
+                    e.preventDefault();
+                }
+
+                var len = elm.value.length;
+
+                if (len !== 1 || len !== 3) {
+                    if (e.keyCode == 47) {
+                        e.preventDefault();
+                    }
+                }
+                if (len === 2) {
+                    if (e.keyCode !== 8 && e.keyCode !== 46) {
+                        elm.value = elm.value + '/';
+                    }
+                }
+
+                if (len === 5) {
+                    if (e.keyCode !== 8 && e.keyCode !== 46) {
+                        elm.value = elm.value + '/';
+                    }
+                }
+            });
+        };
+
+        dateInputMask(input);
+    });
+    ///////////////
+    $(function () {
+        $('.edit-data-master-td').click(function () {
+            $(this).children('input').focus();
+        })
+    })
+    $(function () {
+        $('.edit-data-master-td-img').mouseenter(function () {
+            $('.edit-data-master-td-img-span').show();
+        })
+        $('.edit-data-master-td-img').mouseleave(function () {
+            $('.edit-data-master-td-img-span').hide();
+        })
+    })
+    ///////////
+    $(document).ready(function () {
+        $('.edit-data-master-input').click(function () {
+            $(this).closest('.checkbox-unit').find('.checkboxes-input').prop('checked', true);
+        })
+    })
+    ///////////    ///////////
+    $('#file').change(function (event) {
+        var tmppath = URL.createObjectURL(event.target.files[0]);
+        $("#pre_i").removeAttr('type');
+        $("#pre_i").addClass("home-admin-masters-img");
+        $("#pre_i").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+        $('.edit-data-master-td-img-span').remove();
+        $('.edit-data-master-td-img-info').css('display', 'block');
+
+    });
+
+    /////////select function
+
+    var expanded = false;
+
+    function showCheckboxesStatus() {
+        var checkboxes = document.querySelector(".checkboxes-status");
+
+        if (!expanded) {
+            $(checkboxes).fadeIn(1000)
+            $('.icon-seleсt-status').css('opacity', '0').css('transition', '1s').css('cursor', 'auto')
+            expanded = true;
+        } else {
+            $(checkboxes, '.icon-seleсt').fadeOut()
+            $('.icon-seleсt-status').css('opacity', '1').css('transition', '1s').css('cursor', 'pointer')
+
+            expanded = false;
+        }
+    }
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+
+        if (!expanded) {
+            $(checkboxes).fadeIn(1000)
+            $('.icon-seleсt').css('opacity', '0').css('transition', '.5s').css('cursor', 'auto')
+            expanded = true;
+        } else {
+            $(checkboxes, '.icon-seleсt').fadeOut()
+            $('.icon-seleсt').css('opacity', '1').css('transition', '2s').css('cursor', 'pointer')
+
+            expanded = false;
+        }
+    }
+</script>

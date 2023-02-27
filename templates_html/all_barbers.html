@@ -1,0 +1,48 @@
+<!-- Recent Sales Start -->
+<div class="container-fluid pt-4 px-4 content-all-barbers position-relative">
+   <div class="bg-secondary text-center rounded p-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+         <h6 class="mb-0">Усі працівники</h6>
+      </div>
+      <div class="table-responsive position-relative">
+         <table class="table text-start align-middle table-bordered table-hover mb-0">
+            <thead>
+               <tr class="text-white">
+                  <th scope="col">Майстер</th>
+                  <th scope="col">Статус</th>
+                  <th scope="col">Редагувати</th>
+               </tr>
+            </thead>
+            <tbody class="all-masters-list">
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <div class="home-admin-wind-for-big-img">
+      <img class="home-admin-wind-for-big-img-child" src="">
+   </div>
+</div>
+<!-- Recent Sales End -->
+<script>
+const { get_all_users } = require('./front/global_modules')
+let all_masters = get_all_users()
+
+   all_masters.forEach(master => {
+      $('.all-masters-list').prepend(`
+         <tr>
+         <td class="all-masters-img-name"><img style="width: 40px; height: 40px;" id="${master.img_user}" src="${master.img_user}"> ${master.name_user}</td> 
+         <td>${master.status_user}</td> 
+         <td><form method="POST"><button name="edit" type="submite">Редагувати</button><input type="hidden" name="id_master" value="${master.status_user}"></input></form></td >
+         </tr`)
+   });
+   $(document).ready(function () {
+      $('.all-masters-list').on('mouseover', 'img', function () {
+         $('.home-admin-wind-for-big-img-child').attr('src', this.id);
+         $('.home-admin-wind-for-big-img').show();
+      });
+      $('.all-masters-list').on('mouseout', 'img', function () {
+         $('.home-admin-wind-for-big-img').hide();
+      });
+   });
+
+</script>

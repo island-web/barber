@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="./style/form_login.css" rel="stylesheet">
+    <title></title>
+</head>
+
+<body>
+
+
+    <div class="login-box-1">
+        <div class="box">
+            <form>
+                <h2>Вкажить свій персональний код</h2>
+                <div class="inputBox">
+                    <input type="text" id="init-val" name="init" placeholder="Enter pin" required>
+                </div>
+                <input type="button" id="init-btn" name="pin" value="Далі">
+            </form>
+        </div>
+    </div>
+    <div class="login-box-2" style="display: none;">
+        <div class="box">
+            <form>
+                <img id="img_logo_login" srs=""></img>
+                <div class="inputBox">
+                    <input type="email" id="email_inp" name="email" placeholder="Username" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="password_inp" name="password" placeholder="Password" required>
+                </div>
+                <input type="button" id="mail_pass_btn" name="login" value="Login">
+            </form>
+        </div>
+    </div>
+    <script src="./renderer.js"></script>
+    <!-- <script src="./front/login_modules.js"></script> -->
+
+
+</body>
+
+</html>
+
+<script></script> 

@@ -1,0 +1,82 @@
+
+
+<div class="container-fluid pt-4 px-4 col-sm-12 col-xl-12 content-all-barbers">
+   <div class="client-baza-main">
+      <div class="h-100 bg-secondary rounded p-4">
+         <div class="d-flex align-items-center justify-content-between mb-2">
+            <h6 class="mb-0">База наших кліентів</h6>
+            <div class="baza-input">
+               <input type="text" class="client-baza-search-input" placeholder="Впишіть дані кліента">
+            </div>
+         </div>
+
+         <ul class="client-baza-header">
+            <li>Ім'я</li>
+            <li>Контакт</li>
+            <li>Пошта</li>
+            <li>Всі замовлення</li>
+         </ul>
+
+         <div class="client-baza-body"></div>
+      </div>
+   </div>
+   <div class="client-baza-visits-info">
+      <h6>Інформація про візити <span class="client-baza-visits-name"></span> <span class="client-baza-visits-info-closed"><i class="fa-solid fa-xmark"></i></span></h6>
+      <div class="client-baza-visits-body"></div>
+   </div>
+</div>
+
+<!-- <script>
+   all_clients = JSON.parse('<?php echo json_encode($all_clients) ?>', 'UTF-8');
+   $(document).ready(function() {
+      all_clients.forEach(element => {
+         $(".client-baza-body").prepend(`<ul class='client-baza-body-ul'>
+         <li class='search'>${element.name_client}</li>
+         <li class='search'><a class="a-tel-orders a-tel-adaptiv" href="tel:${element.phone}">${element.phone}</a></li>
+         <li class='search'><a href="mailto:${element.mail}">${element.mail}</a></li>
+         <li id='${element.id_client}' class="all-visites-btn">Дивитись
+         <input type='hidden' id='client-name-baza' value='${element.name_client}'/>
+         </li>
+         <input type='hidden' class='search-input' value='${element.name_client}${element.phone}${element.mail}'/>
+      </ul>`)
+      })
+   })
+
+   $(document).ready(function() {
+      $(".client-baza-body").on('click', '.all-visites-btn', function() {
+         $('.client-baza-visits-info').fadeIn();
+         $('.client-baza-visits-body p').remove();
+         $('.client-baza-visits-name').html($(this).children('#client-name-baza').val());
+
+         all_clients.forEach(el => {
+            if (el.id_client == this.id) {
+               $('.client-baza-visits-body').prepend(`<p>${el.visites_last_date.replaceAll('/','-').replaceAll('.','').replaceAll('_',' ')} ${el.all_info.replaceAll('#','')} <span class='client-baza-true-info'>Не прийшов</span></p>`)
+            }
+         })
+         $('.client-baza-visits-info').css(`margin-left`, `-${document.querySelector('.client-baza-visits-info').offsetWidth / 2}px`)
+      })
+      $('.client-baza-visits-info-closed').click(function() {
+         $('.client-baza-visits-info').fadeOut();
+      })
+   })
+
+
+
+   ////////////////
+   $(document).ready(function() {
+      $('.client-baza-search-input').on('input', function() {
+         let val = this.value.replace(/ /g, '').toLowerCase();
+         if (val != '') {
+            $('.search-input').each(function() {
+               if ($(this).val().toLowerCase().replaceAll('(', '').replaceAll(')', '').replaceAll('+', '').replaceAll('-', '').toString().replace(/ /g, '').search(val) == -1) {
+                  $(this.parentNode).slideUp()
+               } else {
+                  $(this.parentNode).show()
+               }
+            })
+         } else {
+            $('.client-baza-body-ul').slideDown()
+         }
+      })
+   })
+</script> -->

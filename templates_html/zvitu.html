@@ -1,0 +1,47 @@
+<div class="container-fluid pt-4 px-4 col-sm-12 col-xl-12 content-all-barbers">
+
+   <div class="h-100 bg-secondary rounded p-4">
+      <div class="zvitu-head">
+         <h6>Звіти</h6>
+         <div class="zvitu-head-btn">
+            <input type="text" class="zvitu-head-btn-input">
+            <button class="zvitu-download">Export To Excel</button>
+            <!-- <p class="zvitu-download">Завантажити</p> -->
+         </div>
+      </div>
+      <div class="zvitu-all-master"></div>
+      <table class="zvitu-main"></table>
+   </div>
+</div>
+<script>
+
+   $(document).ready(function () {
+      all_masters.forEach(element => { ////////all звіти
+         // actual_orders_user.forEach(el => {
+         $('.zvitu-main').prepend(`<tr class='zvitu-main-ul'>
+   <input class='zvitu_search_input' type='hidden' value='${element.name}${element.date_order}'>
+   <td class='zvitu-li-1'>${element.name}</td>
+   <td class='zvitu-li-2'>${element.date_order}</td>
+   <td class='zvitu-li-3'>${element.service_order.split('#').filter(Boolean)}</td>
+</tr>`)
+      });
+      // });
+   })
+   $(document).ready(function () {
+      $('.zvitu-head-btn-input').on('input', function () {
+         let val = this.value.replace(/ /g, '').toLowerCase();
+         if (val != '') {
+            $('.zvitu_search_input').each(function () {
+               if ($(this).val().toLowerCase().replaceAll('.', '').toString().replace(/ /g, '').search(val) == -1) {
+                  $(this.parentNode).slideUp()
+               } else {
+                  $(this.parentNode).show()
+               }
+            })
+         } else {
+            $('.zvitu-main-ul').slideDown()
+         }
+      })
+   })
+
+</script>
